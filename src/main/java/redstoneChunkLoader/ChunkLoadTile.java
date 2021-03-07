@@ -23,8 +23,7 @@ public class ChunkLoadTile extends TileEntity implements IChunkLoadHandler {
     private boolean isInited = false;
 
     public void initEntity() {
-        if (this.worldObj.isRemote) {
-        } else if (this.chunkTicket == null) {
+        if (!this.worldObj.isRemote && this.chunkTicket == null) {
             ForgeChunkManager.Ticket ticket = ForgeChunkManager.requestTicket(ModReadStoneChunkLoader.instance, this.worldObj, ForgeChunkManager.Type.NORMAL);
             if (ticket != null) {
                 NBTTagCompound tag = ticket.getModData();
@@ -123,6 +122,8 @@ public class ChunkLoadTile extends TileEntity implements IChunkLoadHandler {
     public void switchPower(boolean onoff) {
         if (chunkLoadON != onoff) {
             chunkLoadON = onoff;
+            int meta = chunkLoadON? 1 : 0;
+            this.worldObj.setBlockMetadataWithNotify(this.xCoord, this.yCoord, this.zCoord, meta, 3);
             if (!this.worldObj.isRemote) {
                 if (chunkLoadON) {
                     forceChunk(forceChunkRange);

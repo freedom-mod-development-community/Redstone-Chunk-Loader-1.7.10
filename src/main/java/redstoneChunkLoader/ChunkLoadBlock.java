@@ -1,11 +1,16 @@
 package redstoneChunkLoader;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -13,10 +18,13 @@ import java.util.Random;
 public class ChunkLoadBlock extends BlockContainer {
     protected ChunkLoadBlock() {
         super(Material.rock);
-        setBlockName("ChunkLoadBlock");
-        setBlockTextureName("beacon");
-        setCreativeTab(ModReadStoneChunkLoader.creativeTab);
+        setBlockName("ChunkLoaderBlock");
+        setBlockTextureName(ModReadStoneChunkLoader.DOMAIN + ":loaderoff");
+        setCreativeTab(CreativeTabs.tabRedstone);
     }
+
+    protected IIcon blockIconOn;
+    protected IIcon blockIconOff;
 
     @Override
     public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
@@ -90,6 +98,22 @@ public class ChunkLoadBlock extends BlockContainer {
                     chunkTile.switchPower(false);
                 }
             }
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void registerBlockIcons(IIconRegister p_149651_1_) {
+        this.blockIconOn = p_149651_1_.registerIcon(ModReadStoneChunkLoader.DOMAIN + ":loaderon");
+        this.blockIconOff = p_149651_1_.registerIcon(ModReadStoneChunkLoader.DOMAIN + ":loaderoff");
+        this.blockIcon = this.blockIconOff;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(int side, int meta) {
+        if (meta > 0) {
+            return blockIconOn;
+        } else {
+            return blockIconOff;
         }
     }
 
