@@ -1,8 +1,8 @@
 [
 {
-  "modid": "speedview",
-  "name": "Speed View Mod",
-  "description": "Player Move Speed View mod.",
+  "modid": "redstonechunkloader",
+  "name": "Redstone Chunk Loader",
+  "description": "Chunk Loader, Control by Redstone.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",

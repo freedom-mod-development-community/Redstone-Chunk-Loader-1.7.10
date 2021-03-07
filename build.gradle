@@ -21,8 +21,8 @@ buildscript {
 apply plugin: 'forge'
 
 version = "1.0"
-group= "Industry.Electrical.kuma.DepsitDisplay-[1.7.10]" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "DepsitDisplay-[1.7.10]"
+group= "Industry.Electrical.kuma.RedstoneChunkLoader-[1.7.10]" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "RedstoneChunkLoader-[1.7.10]"
 
 minecraft {
     version = "1.7.10-10.13.4.1558-1.7.10"
