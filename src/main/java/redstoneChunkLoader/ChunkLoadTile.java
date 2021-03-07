@@ -49,7 +49,7 @@ public class ChunkLoadTile extends TileEntity implements IChunkLoadHandler {
         }
     }
 
-    private ArrayList<ChunkCoordIntPair> forcedChunks = new ArrayList<ChunkCoordIntPair>();
+    private final ArrayList<ChunkCoordIntPair> forcedChunks = new ArrayList<ChunkCoordIntPair>();
 
     private ForgeChunkManager.Ticket chunkTicket = null;
 
@@ -72,8 +72,7 @@ public class ChunkLoadTile extends TileEntity implements IChunkLoadHandler {
 
     /**
      * チャンクロー度の範囲を設定し、それに基づいた範囲にチャンクロー度をやりなおす。
-     *
-     * @param range
+     * @param range チャンクロード範囲の半径
      */
     public void setForceChunkRangeAndReForce(int range) {
         this.forceChunkRange = range;

@@ -19,7 +19,7 @@ public class ChunkLoadBlock extends BlockContainer {
     protected ChunkLoadBlock() {
         super(Material.rock);
         setBlockName("ChunkLoaderBlock");
-        setBlockTextureName(ModReadStoneChunkLoader.DOMAIN + ":loaderoff");
+        setBlockTextureName(ModReadStoneChunkLoader.DOMAIN + ":loader-off");
         setCreativeTab(CreativeTabs.tabRedstone);
     }
 
@@ -103,8 +103,8 @@ public class ChunkLoadBlock extends BlockContainer {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister p_149651_1_) {
-        this.blockIconOn = p_149651_1_.registerIcon(ModReadStoneChunkLoader.DOMAIN + ":loaderon");
-        this.blockIconOff = p_149651_1_.registerIcon(ModReadStoneChunkLoader.DOMAIN + ":loaderoff");
+        this.blockIconOn = p_149651_1_.registerIcon(ModReadStoneChunkLoader.DOMAIN + ":loader-on");
+        this.blockIconOff = p_149651_1_.registerIcon(ModReadStoneChunkLoader.DOMAIN + ":loader-off");
         this.blockIcon = this.blockIconOff;
     }
 
