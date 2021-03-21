@@ -1,4 +1,4 @@
-package redstoneChunkLoader;
+package redstoneChunkLoader.normal;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -8,6 +8,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraftforge.common.ForgeChunkManager;
+import redstoneChunkLoader.IChunkLoadHandler;
+import redstoneChunkLoader.ModReadStoneChunkLoader;
 
 import java.util.ArrayList;
 
