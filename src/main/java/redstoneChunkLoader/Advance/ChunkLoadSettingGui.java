@@ -2,15 +2,18 @@ package redstoneChunkLoader.Advance;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.ChunkCoordIntPair;
 import org.lwjgl.opengl.GL11;
 import redstoneChunkLoader.ContainerKEI;
+import redstoneChunkLoader.ModReadStoneChunkLoader;
 import redstoneChunkLoader.network.PacketHandler;
 
 import java.util.ArrayList;
 
 public class ChunkLoadSettingGui extends GuiContainer {
     AdvanceChunkLoadTile tile;
+    protected static final ResourceLocation chunkButtonTex = new ResourceLocation(ModReadStoneChunkLoader.DOMAIN + ":textures/chunkButtonTex.png");
 
     public ChunkLoadSettingGui(AdvanceChunkLoadTile tile) {
         super(new ContainerKEI());
@@ -45,7 +48,7 @@ public class ChunkLoadSettingGui extends GuiContainer {
             }
         }
 
-        GuiButton button = new GuiButton(1, 320, height / 2 - 10, 80, 20, "ReForceChunk");
+        GuiButton button = new GuiButton(1, 320, height / 2 + 40, 80, 20, "ReForceChunk");
         this.buttonList.add(button);
     }
 
@@ -90,7 +93,7 @@ public class ChunkLoadSettingGui extends GuiContainer {
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_) {
-        if(tile.isUpdate){
+        if (tile.isUpdate) {
             this.initGui();
             tile.isUpdate = false;
         }
@@ -98,8 +101,6 @@ public class ChunkLoadSettingGui extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_) {
-        int cX = this.width / 2;
-        int cZ = this.height / 2;
         for (int x = -4; x < 6; x++) {
             int oX = -15 + x * 20 + 90;
             int oZ = -12;
@@ -123,5 +124,37 @@ public class ChunkLoadSettingGui extends GuiContainer {
             GL11.glScaled(1.25, 1.25, 1.0);
             GL11.glTranslated(-oX, -oZ, 0);
         }
+
+
+        this.mc.getTextureManager().bindTexture(chunkButtonTex);
+        this.drawTexturedModalRect(200, height / 2 - 130, 0, 0, 20, 20);
+        this.drawTexturedModalRect(200, height / 2 - 110, 20, 0, 20, 20);
+        this.drawTexturedModalRect(200, height / 2 - 90, 40, 0, 20, 20);
+        this.drawTexturedModalRect(200, height / 2 - 70, 60, 0, 20, 20);
+        this.drawTexturedModalRect(200, height / 2 - 50, 80, 0, 20, 20);
+
+        this.fontRendererObj.drawString("center", 230, height / 2 - 125, -1);
+        this.fontRendererObj.drawString("None", 230, height / 2 - 105, -1);
+        this.fontRendererObj.drawString("Remove", 230, height / 2 - 85, -1);
+        this.fontRendererObj.drawString("Add", 230, height / 2 - 65, -1);
+        this.fontRendererObj.drawString("Reserved", 230, height / 2 - 45, -1);
+
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glLineWidth(4.0f);
+        if (tile.chunkLoadON) {
+            GL11.glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
+        } else {
+            GL11.glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
+        }
+        GL11.glBegin(GL11.GL_LINE_LOOP);
+        GL11.glVertex2d(-4, -9);
+        GL11.glVertex2d(-4, 175);
+        GL11.glVertex2d(180, 175);
+        GL11.glVertex2d(180, -9);
+        GL11.glEnd();
+
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glDisable(GL11.GL_BLEND);
     }
 }
