@@ -68,7 +68,8 @@ public class AdvanceChunkLoadTile extends TileEntity implements IChunkLoadHandle
         return _forcedChunks;
     }
 
-    public boolean isUpdate=false;
+    public boolean isUpdate = false;
+
     public void resetAndReForceChunk(ArrayList<ChunkCoordIntPair> chunks) {
         this.unforceChunk();
         this._forcedChunks = chunks;
@@ -88,6 +89,9 @@ public class AdvanceChunkLoadTile extends TileEntity implements IChunkLoadHandle
             if (ticket != null) {
                 if (this.chunkTicket == null) {
                     this.chunkTicket = ticket;
+                }
+                if (_forcedChunks.size() == 0) {
+                    _forcedChunks.add(getThisPosChunk());
                 }
                 forceChunk();
             }

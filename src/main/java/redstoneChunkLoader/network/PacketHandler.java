@@ -12,6 +12,7 @@ public class PacketHandler {
 
     public static void init() {
         registerMessage(new AdvanceChunkSettingSyncMessage(), AdvanceChunkSettingSyncMessage.class, 0, Side.SERVER);
+        registerMessage(new AdvanceChunkSettingSyncMessage(), AdvanceChunkSettingSyncMessage.class, 0, Side.CLIENT);
     }
 
     public static <REQ extends IMessage, REPLY extends IMessage> void registerMessage(IMessageHandler<? super REQ, ? extends REPLY> messageHandler, Class<REQ> requestMessageType, int discriminator, Side sendTo) {
