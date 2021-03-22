@@ -75,6 +75,7 @@ public class AdvanceChunkLoadTile extends TileEntity implements IChunkLoadHandle
         this.forceChunk();
         this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
         this.worldObj.notifyBlockChange(this.xCoord, this.yCoord, this.zCoord, this.getBlockType());
+        this.markDirty();
         isUpdate = true;
     }
 

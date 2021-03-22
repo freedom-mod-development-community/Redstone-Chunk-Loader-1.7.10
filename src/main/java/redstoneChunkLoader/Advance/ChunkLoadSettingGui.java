@@ -18,10 +18,14 @@ public class ChunkLoadSettingGui extends GuiContainer {
     public ChunkLoadSettingGui(AdvanceChunkLoadTile tile) {
         super(new ContainerKEI());
         this.tile = tile;
+        this.tempChunkList = tile.getForcedChunks();
     }
 
     @Override
     public void initGui() {
+        this.tempChunkList = tile.getForcedChunks();
+        this.tempRemoveChunkList.clear();
+        this.tempAddingChunkList.clear();
         this.buttonList.clear();
         super.initGui();
         ChunkCoordIntPair center = tile.getThisPosChunk();
@@ -72,7 +76,7 @@ public class ChunkLoadSettingGui extends GuiContainer {
                         break;
                     case Removing:
                         tempRemoveChunkList.remove(pair);
-                        tempChunkList.remove(pair);
+                        tempChunkList.add(pair);
                         cb.mode = EnumChunkSettingMode.Forced;
                         break;
                     case Adding:
@@ -82,7 +86,7 @@ public class ChunkLoadSettingGui extends GuiContainer {
                         break;
                     case Forced:
                         tempRemoveChunkList.add(pair);
-                        tempChunkList.add(pair);
+                        tempChunkList.remove(pair);
                         cb.mode = EnumChunkSettingMode.Removing;
                 }
             }
