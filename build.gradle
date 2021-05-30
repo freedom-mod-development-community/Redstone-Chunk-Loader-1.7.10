@@ -2,6 +2,7 @@ buildscript {
     ext.kotlin_version = "1.3.72"
     repositories {
         jcenter()
+        mavenCentral()
         maven {
             name = "forge"
             url = "http://files.minecraftforge.net/maven"
@@ -12,7 +13,6 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.anatawa12.decompileCrasher:gradle-plugin:1.2.0"
         classpath('com.anatawa12.forge:ForgeGradle:1.2-1.0.+') {
             changing = true
             exclude group: 'net.sf.trove4j', module: 'trove4j'
@@ -26,6 +26,7 @@ buildscript {
 }
 
 plugins {
+    id "com.anatawa12.tools.decompileCrasher" version "1.2.3"
     id "com.dorongold.task-tree" version "1.3.1"
 }
 
@@ -34,7 +35,7 @@ apply plugin: 'kotlin'
 apply plugin: 'com.anatawa12.tools.decompileCrasher'
 apply plugin: 'idea'
 
-version = "2.0"
+version = "2.1"
 group= "Industry.Electrical.kuma.RedstoneChunkLoader-[1.7.10]" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "RedstoneChunkLoader-[1.7.10]"
 
@@ -59,16 +60,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     testImplementation "io.mockk:mockk:1.9.3"
     compile fileTree(dir: 'libs', include: ['*.jar'])
-}
-
-compileKotlin {
-    kotlinOptions {
-        freeCompilerArgs = [
-                "-XXLanguage:+InlineClasses",
-                "-Xuse-experimental=kotlin.Experimental",
-                "-XXLanguage:+TrailingCommas",
-        ]
-    }
 }
 
 processResources
